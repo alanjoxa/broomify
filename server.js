@@ -7,8 +7,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-routes(app); // attach all routes
-
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -17,6 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
+
+routes(app); // attach all routes
 process.argv.forEach(function(val, index, array) {
     if (val.indexOf('=') !== -1) {
         var arg = val.split("=");
