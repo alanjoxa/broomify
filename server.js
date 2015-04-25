@@ -5,7 +5,7 @@ var app = express();
 var _ = require('underscore');
 var path = require('path');
 var bodyParser = require('body-parser');
-
+var Pair = require('./service/pair.js');
 var routes = require('./routes/index');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +26,8 @@ process.argv.forEach(function(val, index, array) {
 
 var proxyServer = +process.env['-from'] || +process.env['NODE_PORT'] || 8888;
 
-http.createServer(app).listen(proxyServer, function(){
+var server = http.createServer(app).listen(proxyServer, function(){
 	console.log('Proxyserver started at ' + proxyServer);
 });
+console.log(server.address());
+Pair.setServer(server.address());
