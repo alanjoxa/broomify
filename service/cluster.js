@@ -31,7 +31,7 @@ module.exports = {
 				if (!error && response.statusCode == 200) {
 					try {
 						cb(body);
-					} catch(){}
+					} catch(err){}
 				}
 			});
 		});
@@ -53,7 +53,7 @@ module.exports = {
 function serialize(obj) {
 	var querystring = [];
 	for(var key in obj) {
-		querystring.push(key + '=' obj[key]);
+		querystring.push(key + '=' + obj[key]);
 	}
 	return querystring.join('&')
 }
