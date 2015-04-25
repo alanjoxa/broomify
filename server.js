@@ -14,7 +14,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
-var middleware = [bodyParser.urlencoded(), bodyParser.json()];
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 process.argv.forEach(function(val, index, array) {
     if (val.indexOf('=') !== -1) {
