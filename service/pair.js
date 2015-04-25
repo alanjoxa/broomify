@@ -33,7 +33,6 @@ Pair.pair = function(options) {
     console.log("Returning false " + options.key, KEYS);
     return false;
   }
-  console.log("Adding " + options.address + " to client list");
   cluster.addServer({
     name: options.name,
     address: options.address
@@ -73,10 +72,15 @@ Pair.connect = function(key, callback) {
     try {
       var body = JSON.parse(body);
       if(body.status) {
+        cluster.addServer({
+          name: "a",
+          address: serverDetail[0] + ":" + serverDetail[1]
+        });
         callback(true);
         return;
       }
     } catch(e) {
+      console.log(e);
     }
     callback(false);
   });

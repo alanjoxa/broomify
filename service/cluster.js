@@ -6,6 +6,7 @@ module.exports = {
 		cb([]);
 	},
 	addServer : function(serverObj) {
+		console.log("Adding " + serverObj.address + " to client list");
 		serverList.push(serverObj);
 	},
 	removeServer : function(argument) {
