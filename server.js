@@ -24,11 +24,6 @@ process.argv.forEach(function(val, index, array) {
 
 var proxyServer = +process.env['-from'] || +process.env['NODE_PORT'] || 8888;
 
-app.get('/getsecret', [function (req, res) {
-    res.send('secretdata');
-}]);
-
-
 http.createServer(app).listen(proxyServer, function(){
 	console.log('Proxyserver started at ' + proxyServer);
 });
