@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var _ = require('underscore');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 routes(app); // attach all routes
@@ -13,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
-var middleware = [express.urlencoded(), express.json()];
+var middleware = [bodyParser.urlencoded(), bodyParser.json()];
 
 process.argv.forEach(function(val, index, array) {
     if (val.indexOf('=') !== -1) {
