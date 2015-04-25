@@ -4,10 +4,6 @@ var express = require('express');
 var app = express();
 var _ = require('underscore');
 var path = require('path');
-var bodyParser = require('body-parser');
-var favicon = require('static-favicon');
-
-app.use(favicon());
 
 //var routes = require('./routes/index');
 //routes(app); // attach all routes
