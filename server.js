@@ -6,6 +6,7 @@ var _ = require('underscore');
 var path = require('path');
 var bodyParser = require('body-parser');
 var Pair = require('./service/pair.js');
+var ip = require('./service/ip.js');
 var routes = require('./routes/index');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -29,5 +30,8 @@ var proxyServer = +process.env['-from'] || +process.env['NODE_PORT'] || 8888;
 var server = http.createServer(app).listen(proxyServer, function(){
 	console.log('Proxyserver started at ' + proxyServer);
 });
-console.log(server.address());
-Pair.setServer(server.address());
+//console.log(server.address());
+var config = server.address();
+config.address = ip;
+console.log(ip);
+Pair.setServer(config);
