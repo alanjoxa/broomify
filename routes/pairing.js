@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var Pair = require("../pair");
+var Pair = require("../service/pair");
 
 router.get('/key', function(req, res) {
 	res.json({key: Pair.getKey()});
