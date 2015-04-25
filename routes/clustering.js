@@ -12,13 +12,25 @@ else fire the lookup request to check if any other app in the cluster has this d
 else get it from the server and keep it in the cache.
 */
 
+router.get('/clusterlookup', function(req, res) {
+	res.json({
+		available : cache.has(req.query)
+	});
+});
+
+router.get('/clusterget', function(req, res) {
+	res.json(cache.get(req.query));
+});
+
 router.get('/getdata', function(req, res) {
 	if(cache.has(req.query)) {
 		return res.json(cache.get(req.query));
 	}
 	cluster.lookup(req.query, function(peerList) {
 		if(peerList.length) {
-			//get from the first peer
+			cluster.getData(peerList, function(data) {
+				res.json(data);
+			});
 		} else {
 			remoteserver.getData(req.query, function(err, data) {
 				if(err) res.send(err);
@@ -30,5 +42,7 @@ router.get('/getdata', function(req, res) {
 		}
 	})
 });
+
+
 
 module.exports = router;
