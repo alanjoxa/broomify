@@ -5,8 +5,8 @@ var app = express();
 var _ = require('underscore');
 var path = require('path');
 
-//var routes = require('./routes/index');
-//routes(app); // attach all routes
+var routes = require('./routes/index');
+routes(app); // attach all routes
 
 
 app.set('views', path.join(__dirname, 'views'));
